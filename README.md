@@ -144,14 +144,6 @@ sum        category
 10. summarize transactions by category
 11. print this menu
 
-> exit
-invalid choice
-> exit()
-invalid choice
-> exit
-invalid choice
-> ls  
-invalid choice
 > 0
 bye
 (base) zach@MacBook-Pro pa02_cs103a % exit
