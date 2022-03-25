@@ -7,6 +7,6 @@ Tingwei Liu
 ### Instructor:
 Tim Hickey 
 
-'''bash
+```bash
 ls text.txt
-'''
+```
