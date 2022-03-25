@@ -10,9 +10,7 @@ Tim Hickey
 typescript recording:
 
 Script started on Thu Mar 24 22:23:14 2022
-```
-ls
-```
+
 (base) zach@MacBook-Pro pa02_cs103a % ls <br>
 README.md           category.py         test_category.py    tracker.db          transactions.py <br>
 __pycache__         pytest.ini          test_transaction.py tracker.py          typescript <br>
