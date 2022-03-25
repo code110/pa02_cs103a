@@ -130,4 +130,24 @@ def test_sum_year(empty_db):
     assert tran_sum['Sum']==5050
     assert tran_sum['date']=="2023"
 
-    
+#Zihao Liu
+@pytest.mark.sum_cat()
+def test_sum_cat(empty_db):
+    tran0={'amount':50,'category':'food','date':'2023-10-05','desc':'hamburger'}
+    tran1={'amount':500,'category':'gas','date':'2022-10-05','desc':'coke'}
+    tran2={'amount':5000,'category':'gas','date':'2023-11-05','desc':'car'}
+    tran3={'amount':999,'category':'food','date':'2020-12-06','desc':'pizza'}
+    empty_db.add(tran0)
+    empty_db.add(tran1)
+    empty_db.add(tran2)
+    empty_db.add(tran3)
+    sum_db=empty_db.sum_cat()
+    tran_sum=sum_db[0]
+    assert tran_sum['Sum']==5500
+    assert tran_sum['category']=="gas"
+    tran_sum2=sum_db[1]
+    assert tran_sum2['Sum']==1049
+    assert tran_sum2['category']=="food"
+ 
+
+   
