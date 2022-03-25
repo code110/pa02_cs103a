@@ -98,8 +98,10 @@ def process_choice(choice):
     elif choice == '10':  # Junhao Wang
         trans = transactions.sum_cat()
         print_sum_cat(trans)
+    elif choice == '11': # zihao liu
+	print(menu)
     else:
-        print("choice", choice, "not yet implemented")
+        print("invalid choice")
 
     choice = input("> ")
     return (choice)
