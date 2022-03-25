@@ -99,7 +99,7 @@ def process_choice(choice):
         trans = transactions.sum_cat()
         print_sum_cat(trans)
     elif choice == '11': # zihao liu
-	print(menu)
+        print(menu)
     else:
         print("invalid choice")
 
