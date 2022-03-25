@@ -8,9 +8,12 @@ def to_trans_dict(trans_tuple):
 
 
 def to_trans_date_dict(trans_tuple):
-    trans = {'sum': trans_tuple[0], 'date': trans_tuple[1]}
+    trans = {'Sum': trans_tuple[0], 'date': trans_tuple[1]}
     return trans
 
+def to_trans_category_dict(trans_tuple):
+    trans = {'Sum': trans_tuple[0], 'category': trans_tuple[1]}
+    return trans
 
 def to_trans_dict_list(trans_tuples):
     return [to_trans_dict(trans) for trans in trans_tuples]
@@ -34,6 +37,17 @@ class Transaction:
         con.commit()
         con.close()
         return to_trans_dict_list(tuples)
+
+    #Tingwei Liu
+    def select_one(self,rowid):
+        
+        con= sqlite3.connect(self.dbfile)
+        cur = con.cursor()
+        cur.execute("SELECT rowid,* from transactions where rowid=(?)",(rowid,) )
+        tuples = cur.fetchall()
+        con.commit()
+        con.close()
+        return to_trans_dict(tuples[0])
 
     def add(self, item):
         con = sqlite3.connect(self.dbfile)
@@ -67,10 +81,11 @@ class Transaction:
     def sum_month(self):
         con = sqlite3.connect(self.dbfile)
         cur = con.cursor()
-        cur.execute("SELECT sum(amount) as Sum, strftime('%Y-%m',date) as month from transactions group by month")
+        cur.execute("SELECT sum(amount) as Sum, strftime('%Y-%m',date) as month from transactions group by month ORDER BY month desc")
         tuples = cur.fetchall()
         con.commit()
         con.close()
+        print([to_trans_date_dict(trans) for trans in tuples])
         return [to_trans_date_dict(trans) for trans in tuples]
 
     def sum_year(self):
@@ -89,4 +104,6 @@ class Transaction:
         tuples = cur.fetchall()
         con.commit()
         con.close()
-        return [to_trans_date_dict(trans) for trans in tuples]
+        return [to_trans_category_dict(trans) for trans in tuples]
+
+
