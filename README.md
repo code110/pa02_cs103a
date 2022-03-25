@@ -10,7 +10,9 @@ Tim Hickey
 typescript recording:
 
 Script started on Thu Mar 24 22:23:14 2022
-```ls```
+```
+ls
+```
 (base) zach@MacBook-Pro pa02_cs103a % ls
 README.md           category.py         test_category.py    tracker.db          transactions.py
 __pycache__         pytest.ini          test_transaction.py tracker.py          typescript
@@ -39,7 +41,6 @@ transactions.py:108:4: C0116: Missing function or method docstring (missing-func
 ------------------------------------------------------------------
 Your code has been rated at 7.65/10 (previous run: 7.65/10, +0.00)
 
-```pytest -v test_transaction.py```
 (base) zach@MacBook-Pro pa02_cs103a % pytest -v test_transaction.py 
 ======================================================================= test session starts ========================================================================
 platform darwin -- Python 3.9.7, pytest-6.2.4, py-1.10.0, pluggy-0.13.1 -- /Users/zach/opt/anaconda3/bin/python
