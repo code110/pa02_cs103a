@@ -8,14 +8,14 @@ Tingwei Liu
 Tim Hickey 
 
 typescript recording:
-
+```
 Script started on Thu Mar 24 22:23:14 2022
 
 (base) zach@MacBook-Pro pa02_cs103a % ls <br>
 README.md           category.py         test_category.py    tracker.db          transactions.py <br>
 __pycache__         pytest.ini          test_transaction.py tracker.py          typescript <br>
 (base) zach@MacBook-Pro pa02_cs103a % pylint transactions.py  <br>
-************* Module transactions <br>
+************ Module transactions <br>
 transactions.py:44:0: C0303: Trailing whitespace (trailing-whitespace) <br>
 transactions.py:52:0: C0303: Trailing whitespace (trailing-whitespace)
 transactions.py:65:0: C0303: Trailing whitespace (trailing-whitespace)
@@ -157,3 +157,4 @@ bye
 (base) zach@MacBook-Pro pa02_cs103a % exit
 
 Script done on Thu Mar 24 22:29:16 2022
+```
