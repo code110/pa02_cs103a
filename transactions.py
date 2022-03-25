@@ -8,7 +8,7 @@ def to_trans_dict(trans_tuple):
 
 
 def to_trans_date_dict(trans_tuple):
-    trans = {'sum': trans_tuple[0], 'date': trans_tuple[1]}
+    trans = {'Sum': trans_tuple[0], 'date': trans_tuple[1]}
     return trans
 
 
@@ -34,6 +34,17 @@ class Transaction:
         con.commit()
         con.close()
         return to_trans_dict_list(tuples)
+
+    #Tingwei Liu
+    def select_one(self,rowid):
+        
+        con= sqlite3.connect(self.dbfile)
+        cur = con.cursor()
+        cur.execute("SELECT rowid,* from transactions where rowid=(?)",(rowid,) )
+        tuples = cur.fetchall()
+        con.commit()
+        con.close()
+        return to_trans_dict(tuples[0])
 
     def add(self, item):
         con = sqlite3.connect(self.dbfile)
@@ -71,7 +82,7 @@ class Transaction:
         tuples = cur.fetchall()
         con.commit()
         con.close()
-        return [to_trans_date_dict(trans) for trans in tuples]
+        return to_trans_dict_list(tuples)
 
     def sum_year(self):
         con = sqlite3.connect(self.dbfile)
@@ -80,7 +91,7 @@ class Transaction:
         tuples = cur.fetchall()
         con.commit()
         con.close()
-        return [to_trans_date_dict(trans) for trans in tuples]
+        return to_trans_dict_list(tuples)
 
     def sum_cat(self):
         con = sqlite3.connect(self.dbfile)
@@ -89,4 +100,6 @@ class Transaction:
         tuples = cur.fetchall()
         con.commit()
         con.close()
-        return [to_trans_date_dict(trans) for trans in tuples]
+        return to_trans_dict_list(tuples)
+
+

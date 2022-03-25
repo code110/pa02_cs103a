@@ -32,21 +32,50 @@ def small_db(empty_db):
     empty_db.delete(id3)
     empty_db.delete(id2)
 
+#Tingwei Liu
+@pytest.fixture
+def med_db(small_db):
+    rowids=[]
+    for i in range(10):
+        s = str(i)
 
-
+        trans ={'amount':500,
+                'category':'category'+s,
+                'date':'2021-08-1'+s,
+                'desc':'desc'+s
+                }
+        rowid = small_db.add(trans)
+        rowids.append(rowid)
+    yield small_db
+    for j in range(10):
+        small_db.delete(rowids[j])
 
 #Tingwei Liu 
 @pytest.mark.add
-def test_add(empty_db):
+def test_add(small_db):
     tran1 = {'amount':50,'category':'food','date':'2021-10-05','desc':'hamburger'}
-    trans0=empty_db.select_all()
-    rowid=empty_db.add(tran1)
-    trans1=empty_db.select_all()
+    trans0=small_db.select_all()
+    rowid=small_db.add(tran1)
+    trans1=small_db.select_all()
     assert len(trans1)==len(trans0)+1
-    tran2=empty_db.select_all(rowid)
+    tran2=small_db.select_one(rowid)
     assert tran1['amount']==tran2['amount']
     assert tran1['category']==tran2['category']
     assert tran1['date']==tran2['date']
     assert tran1['desc']==tran2['desc']
 
+#Tingwei Liu
+@pytest.mark.delete
+def test_delete(med_db):
+    trans1 = med_db.select_all()
+
+    tran0 = {'amount':50,'category':'food','date':'2021-10-05','desc':'hamburger'}
+    rowid = med_db.add(tran0)
+    trans2 = med_db.select_all()
+
+    med_db.delete(rowid)
+    trans3 = med_db.select_all()
+
+    assert len(trans1)==len(trans3)
+    assert len(trans3) == len(trans2)-1
     
