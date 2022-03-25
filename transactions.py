@@ -8,7 +8,7 @@ def to_trans_dict(trans_tuple):
 
 
 def to_trans_date_dict(trans_tuple):
-    trans = {'Sum': trans_tuple[0], 'date': trans_tuple[1]}
+    trans = {'sum': trans_tuple[0], 'date': trans_tuple[1]}
     return trans
 
 
@@ -71,7 +71,7 @@ class Transaction:
         tuples = cur.fetchall()
         con.commit()
         con.close()
-        return to_trans_dict_list(tuples)
+        return [to_trans_date_dict(trans) for trans in tuples]
 
     def sum_year(self):
         con = sqlite3.connect(self.dbfile)
@@ -80,7 +80,7 @@ class Transaction:
         tuples = cur.fetchall()
         con.commit()
         con.close()
-        return to_trans_dict_list(tuples)
+        return [to_trans_date_dict(trans) for trans in tuples]
 
     def sum_cat(self):
         con = sqlite3.connect(self.dbfile)
@@ -89,4 +89,4 @@ class Transaction:
         tuples = cur.fetchall()
         con.commit()
         con.close()
-        return to_trans_dict_list(tuples)
+        return [to_trans_date_dict(trans) for trans in tuples]

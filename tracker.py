@@ -1,4 +1,3 @@
-
 '''
 tracker is an app that maintains a list of personal
 financial transactions.
@@ -74,7 +73,7 @@ def process_choice(choice):
         desc = input("new category description: ")
         cat = {'name': name, 'desc': desc}
         category.update(rowid, cat)
-    elif choice == '4': # Junhao Wang
+    elif choice == '4':  # Junhao Wang
         trans = transactions.select_all()
         print_transactions(trans)
     elif choice == '5':  # Junhao Wang
@@ -89,20 +88,16 @@ def process_choice(choice):
         transactions.delete(rowid)
     elif choice == '7':  # Junhao Wang
         trans = transactions.sum_date()
-        for tran in trans:
-            print_sum_date(tran)
+        print_sum_date(trans)
     elif choice == '8':  # Junhao Wang
         trans = transactions.sum_month()
-        for tran in trans:
-            print_sum_month(tran)
+        print_sum_month(trans)
     elif choice == '9':  # Junhao Wang
         trans = transactions.sum_year()
-        for tran in trans:
-            print_sum_year(tran)
+        print_sum_year(trans)
     elif choice == '10':  # Junhao Wang
         trans = transactions.sum_cat()
-        for tran in trans:
-            print_sum_cat(tran)
+        print_sum_cat(trans)
     else:
         print("choice", choice, "not yet implemented")
 
@@ -127,9 +122,9 @@ def toplevel():
 
 def print_transactions(items):
     ''' print the transactions '''
-    # if len(items) == 0:
-    #     print('no items to print')
-    #     return
+    if len(items) == 0:
+        print('no items to print')
+        return
     print('\n')
     print("%-10s %-10s %-10s %-15s %-30s" % (
         'item #', 'amount', 'category', 'date', 'description'))
@@ -139,23 +134,36 @@ def print_transactions(items):
         print("%-10s %-10s %-10s %-15s %-30s" % values)
 
 
-def print_sum_date(trans):  # Junhao Wang
-    print("%-3s %-10s" % ("Sum", "date"))
+def print_sum_date(items):
+    print("%-10s %-10s" % ("sum", "date"))
     print('-' * 45)
-    for tran in trans:
-        print("%-10d %-10s\n" % (tran['amount'], tran['date']))
+    for item in items:
+        values = tuple(item.values())
+        print("%-10d %-10s" % values)
 
 
-def print_sum_month(trans):  # Junhao Wang
-    print("%-10d %-10d\n" % (trans['amount'], trans['month']))
+def print_sum_month(items):  # Junhao Wang
+    print("%-10s %-10s" % ("sum", "month"))
+    print('-' * 45)
+    for item in items:
+        values = tuple(item.values())
+        print("%-10d %-10s" % values)
 
 
-def print_sum_year(trans):  # Junhao Wang
-    print("%-10d %-10d\n" % (trans['amount'], trans['year']))
+def print_sum_year(items):  # Junhao Wang
+    print("%-10s %-10s" % ("sum", "year"))
+    print('-' * 45)
+    for item in items:
+        values = tuple(item.values())
+        print("%-10d %-10s" % values)
 
 
-def print_sum_cat(trans):  # Junhao Wang
-    print("%-10d %-10s\n" % (trans['amount'], trans['category']))
+def print_sum_cat(items):  # Junhao Wang
+    print("%-10s %-10s" % ("sum", "category"))
+    print('-' * 45)
+    for item in items:
+        values = tuple(item.values())
+        print("%-10d %-10s" % values)
 
 
 def print_category(cat):
